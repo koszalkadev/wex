@@ -20,9 +20,11 @@ public record TransactionRequestDTO(
     @NotNull(message = TRANSACTION_AMOUNT_NOT_NULL_MESSAGE)
     @Min(value = 0, message = TRANSACTION_AMOUNT_MIN_MESSAGE)
     BigDecimal amount,
+
     @NotNull(message = DESCRIPTION_NOT_NULL_MESSAGE)
     @Size(max = 50, message = DESCRIPTION_SIZE_MESSAGE)
     String description,
+
     @NotNull(message = TRANSACTION_DATE_NOT_NULL_MESSAGE)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)

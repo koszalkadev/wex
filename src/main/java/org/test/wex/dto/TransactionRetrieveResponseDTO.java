@@ -13,6 +13,7 @@ public record TransactionRetrieveResponseDTO(
         Double exchangeRate,
         @Digits(integer = 99999, fraction = 2)
         BigDecimal convertedAmount) {
+
     public static TransactionRetrieveResponseDTO buildResponseDTO(
             TransactionResponseDTO purchaseTransaction,
             Double exchangeRate,

@@ -10,7 +10,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./env/db/data:/var/lib/postgresql/data
+      - /env/db/data:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "sh -c 'pg_isready -U postgres -d wex'" ]
       interval: 10s

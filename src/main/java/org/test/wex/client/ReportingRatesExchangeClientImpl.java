@@ -54,13 +54,11 @@ public class ReportingRatesExchangeClientImpl implements ReportingRatesExchangeC
             filter = String.join(",", filter,filterCountry);
         }
 
-        String baseUri = UriComponentsBuilder.fromHttpUrl(baseUrl)
+        return UriComponentsBuilder.fromHttpUrl(baseUrl)
                 .queryParam("fields", "record_date,country,currency,exchange_rate")
                 .queryParam("filter", filter)
                 .queryParam("sort", "-record_date")
                 .build()
                 .toUriString();
-
-        return baseUri;
     }
 }

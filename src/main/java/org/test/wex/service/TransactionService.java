@@ -6,5 +6,6 @@ import org.test.wex.dto.TransactionResponseDTO;
 public interface TransactionService {
 
     TransactionResponseDTO persistPurchaseTransaction(TransactionRequestDTO dto) throws Exception;
+    TransactionResponseDTO getPurchaseTransactionById(String transactionId) throws Exception;
 
 }

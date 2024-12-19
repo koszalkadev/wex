@@ -32,7 +32,7 @@ public class TransactionController {
             @RequestBody @Valid TransactionRequestDTO transactionRequestDTO) throws Exception {
         log.debug(
                 "Class=TransactionController Method=purchaseTransaction amount={} description=\"{}\" transactionDate={}",
-                transactionRequestDTO.amount, transactionRequestDTO.description, transactionRequestDTO.transactionDate
+                transactionRequestDTO.amount(), transactionRequestDTO.description(), transactionRequestDTO.transactionDate()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(service.persistPurchaseTransaction(transactionRequestDTO));
     }

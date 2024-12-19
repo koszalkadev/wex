@@ -10,8 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Service;
-import org.test.wex.annotation.FractionalRoundedValues;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -34,7 +32,7 @@ public class Transaction {
 
     @NotNull(message = TRANSACTION_AMOUNT_NOT_NULL_MESSAGE)
     @Min(value = 0, message = TRANSACTION_AMOUNT_MIN_MESSAGE)
-    @FractionalRoundedValues(fractionDigits = 2, message = TRANSACTION_AMOUNT_ROUNDED_MESSAGE)
+    @Digits(integer = 10, fraction = 2)
     private BigDecimal amount;
 
     @NotNull(message = DESCRIPTION_NOT_NULL_MESSAGE)

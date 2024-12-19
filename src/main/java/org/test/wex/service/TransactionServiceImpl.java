@@ -1,5 +1,6 @@
 package org.test.wex.service;
 
+import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -9,6 +10,8 @@ import org.test.wex.domain.Transaction;
 import org.test.wex.dto.TransactionRequestDTO;
 import org.test.wex.dto.TransactionResponseDTO;
 import org.test.wex.repository.TransactionRepository;
+
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -25,13 +28,21 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionResponseDTO persistPurchaseTransaction(TransactionRequestDTO dto) throws Exception {
-        log.info(
+        log.debug(
             "Class=TransactionServiceImpl Method=persistPurchaseTransaction amount={} description=\"{}\" transactionDate={}",
             dto.amount, dto.description, dto.transactionDate
         );
 
         Transaction transaction = repository.save(modelMapper.map(dto, Transaction.class));
 
+        return modelMapper.map(transaction, TransactionResponseDTO.class);
+    }
+
+    @Override
+    public TransactionResponseDTO getPurchaseTransactionById(String transactionId) {
+        log.debug("Class=TransactionServiceImpl Method=purchaseTransaction id={}", transactionId);
+        Transaction transaction = repository.findById(UUID.fromString(transactionId))
+                .orElseThrow(NotFoundException::new);
         return modelMapper.map(transaction, TransactionResponseDTO.class);
     }
 

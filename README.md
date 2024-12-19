@@ -16,7 +16,7 @@ the amount of Dollar in the transaction converted to a desired currency.
 
 - Clone the repository
 - Move into repository folder
-- Start the application using Docker Compose
+- Build and start the application using Docker Compose
 ```
 docker compose up
 ```

@@ -14,36 +14,33 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.test.wex.constants.ErrorMessages.*;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "transaction")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Transaction {
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private UUID id;
-
     @NotNull(message = TRANSACTION_AMOUNT_NOT_NULL_MESSAGE)
     @Min(value = 0, message = TRANSACTION_AMOUNT_MIN_MESSAGE)
-    @Digits(integer = 10, fraction = 2)
+    @Digits(integer = 99999, fraction = 2)
     private BigDecimal amount;
-
     @NotNull(message = DESCRIPTION_NOT_NULL_MESSAGE)
     @Size(max = 50, message = DESCRIPTION_SIZE_MESSAGE)
     private String description;
-
     @NotNull(message = TRANSACTION_DATE_NOT_NULL_MESSAGE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate transactionDate;
-
     private LocalDateTime transactionTimestamp;
+    @OneToMany(mappedBy = "purchaseTransaction", cascade = CascadeType.ALL)
+    private List<TransactionRetrieveHistory> transactionRetrieveHistory;
 
     @PrePersist
     protected void onCreate() {

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.test.wex.exception.ErrorMessages.*;
+import static org.test.wex.constants.ErrorMessages.*;
 
 @Entity
 @Table(name = "transaction_retrieve_history")
@@ -34,16 +34,7 @@ public class TransactionRetrieveHistory {
     @JoinColumn(name = "transaction_id")
     private Transaction purchaseTransaction;
 
-    @PrePersist
-    protected void onCreate() {
-        this.retrieveTimestamp = LocalDateTime.now();
-    }
-
-    public void TransactionRetrieveHistoryModel(
-            Transaction purchaseTransaction,
-            String currency,
-            Double exchangeRate,
-            BigDecimal convertedAmount){
+    public TransactionRetrieveHistory(Transaction purchaseTransaction, String currency, Double exchangeRate, BigDecimal convertedAmount) {
         this.id = null;
         this.exchangeRate = exchangeRate;
         this.currency=currency;
@@ -51,5 +42,12 @@ public class TransactionRetrieveHistory {
         this.retrieveTimestamp = null;
         this.purchaseTransaction = purchaseTransaction;
     }
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.retrieveTimestamp = LocalDateTime.now();
+    }
+
 }
 

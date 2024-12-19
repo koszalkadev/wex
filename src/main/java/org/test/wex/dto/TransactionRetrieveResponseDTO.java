@@ -4,31 +4,26 @@ import jakarta.validation.constraints.Digits;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
-public class TransactionRetrieveResponseDTO{
+public record TransactionRetrieveResponseDTO(
 
-        String transactionId;
+        java.util.UUID transactionId,
 
-        String description;
+        String description,
 
-        LocalDate transactionDate;
+        LocalDate transactionDate,
 
-        BigDecimal originalAmount;
+        BigDecimal originalAmount,
 
-        Double exchangeRate;
+        Double exchangeRate,
 
-        @Digits(integer = 10, fraction = 2)
-        BigDecimal convertedAmount;
-
-    public TransactionRetrieveResponseDTO(UUID id, String description, LocalDate transactionDate, BigDecimal amount,
-                                          Double exchangeRate, BigDecimal convertedAmount) {
-    }
-
+        @Digits(integer = 999999, fraction = 2)
+        BigDecimal convertedAmount) {
     public static TransactionRetrieveResponseDTO buildResponseDTO(
             TransactionResponseDTO purchaseTransaction,
             Double exchangeRate,
-            BigDecimal convertedAmount) {
+            BigDecimal convertedAmount
+    ){
         return new TransactionRetrieveResponseDTO(
                 purchaseTransaction.id,
                 purchaseTransaction.description,

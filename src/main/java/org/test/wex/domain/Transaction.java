@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.test.wex.exception.ErrorMessages.*;
+import static org.test.wex.constants.ErrorMessages.*;
 
 @Entity
 @Getter

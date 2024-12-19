@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=changemeinprod
+      - POSTGRES_DB=wex
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./env/db/data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U postgres -d wex'" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  application:
+    container_name: wex
+    environment:
+      - POSTGRES_URL=jdbc:postgresql://postgres:5432/wex
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./build/libs/:/tmp

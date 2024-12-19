@@ -14,7 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static org.test.wex.exception.ErrorMessages.*;
+import static org.test.wex.constants.ErrorMessages.*;
 
 @Setter
 @Getter

@@ -18,7 +18,7 @@ public class TransactionMapper {
     private TransactionMapper() {}
 
     public static TransactionResponseDTO toResponseDto(Transaction model){
-        log.info("Class=PurchaseTransactionMapper Method=toResponseDto id={}", model.getId());
+        log.info("Class=TransactionMapper Method=toResponseDto id={}", model.getId());
         return new TransactionResponseDTO(
                 model.getId().toString(),
                 model.getAmount(),
@@ -28,7 +28,7 @@ public class TransactionMapper {
     }
 
     public static TransactionRequestDTO toRequestDto(Transaction model){
-        log.info("Class=PurchaseTransactionMapper Method=toRequestDto id={}", model.getId());
+        log.info("Class=TransactionMapper Method=toRequestDto id={}", model.getId());
         return new TransactionRequestDTO(
                 model.getAmount(),
                 model.getDescription(),
@@ -38,7 +38,7 @@ public class TransactionMapper {
 
     public static Transaction toModel(TransactionRequestDTO dto){
         log.info(
-                "Class=PurchaseTransactionMapper Method=toModel amount={} description=\"{}\"",
+                "Class=TransactionMapper Method=toModel amount={} description=\"{}\"",
                 dto.amount(), dto.description()
         );
         return new Transaction(
@@ -52,7 +52,7 @@ public class TransactionMapper {
 
     public static Transaction toModel(TransactionResponseDTO dto){
         log.info(
-                "Class=PurchaseTransactionMapper Method=toModel amount={} description=\"{}\"",
+                "Class=TransactionMapper Method=toModel amount={} description=\"{}\"",
                 dto.amount(), dto.description()
         );
         return new Transaction(

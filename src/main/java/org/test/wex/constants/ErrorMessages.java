@@ -13,7 +13,6 @@ public class ErrorMessages {
 
     public static final String RETRIEVE_EXCHANGE_RATE_NOT_NULL_MESSAGE = "Retrieve exchange rate can't be null.";
     public static final String RETRIEVE_CURRENCY_NOT_NULL_MESSAGE = "Retrieve currency can't be null.";
-    public static final String RETRIEVE_CONVERTED_AMOUNT_ROUNDED_MESSAGE = "Retrieve converted amount is not correctly rounded.";
     public static final String RETRIEVE_CONVERTED_AMOUNT_NOT_NULL_MESSAGE = "Retrieve converted amount can't be null.";
 
     public static final String DEFAULT_VALIDATION_ERROR = "One or more fields passed are not accepted.";
